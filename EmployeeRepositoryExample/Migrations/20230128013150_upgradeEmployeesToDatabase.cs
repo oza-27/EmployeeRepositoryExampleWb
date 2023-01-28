@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeRepositoryExample.Migrations
 {
-    public partial class addEmployeesToDatabase : Migration
+    public partial class upgradeEmployeesToDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeRepositoryExample.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230127121923_addEmployeesToDatabase")]
-    partial class addEmployeesToDatabase
+    [Migration("20230128013150_upgradeEmployeesToDatabase")]
+    partial class upgradeEmployeesToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

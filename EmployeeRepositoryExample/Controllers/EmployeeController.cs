@@ -34,7 +34,15 @@ namespace EmployeeRepositoryExample.Controllers
         //Get for Edit
         public IActionResult Edit(int? id)
         {
-            var employeeGet = _db.Employees.FirstOrDefault(x => x.Id == id);
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+            var employeeGet = _db.Employees.FirstOrDefault(x=>x.Id==id);
+            if(employeeGet == null)
+            {
+                return NotFound();
+            }
             return View(employeeGet);
         }
 
@@ -45,6 +53,34 @@ namespace EmployeeRepositoryExample.Controllers
         {
             //var employeeEdit = _db.Employees.Where(x=>x.)
             _db.Employees.Update(emp);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == 0 || id == null)
+            {
+                return NotFound();
+            }
+            var employeeGet = _db.Employees.FirstOrDefault(x => x.Id == id);
+            if (employeeGet == null)
+            {
+                return NotFound();
+            }
+            return View(employeeGet);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirm(int? id)
+        {
+            var obj = _db.Employees.FirstOrDefault(x=>x.Id==id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _db.Employees.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
