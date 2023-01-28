@@ -1,4 +1,6 @@
 using EmployeeRepositoryExample.Models;
+using EmployeeRepositoryExample.Repository;
+using EmployeeRepositoryExample.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,10 +10,8 @@ var connection = builder.Configuration.GetConnectionString("DefaultConnections")
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseMySql(
-    connection, ServerVersion.AutoDetect(connection)
-    ));
-
+builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 var app = builder.Build();
