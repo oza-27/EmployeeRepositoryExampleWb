@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace EmployeeRepositoryExample.Controllers
+namespace EmployeeRepositoryExample.Areas.Customer.Controllers
 {
     public class HomeController : Controller
     {

@@ -9,10 +9,13 @@ namespace EmployeeRepositoryExample.Repository
 		public UnitOfWork(ApplicationDbContext db)
 		{
 			_db= db;
-			Employees = new EmployeeRepository(_db);
+			Employee = new EmployeeRepository(_db);
+			Position = new PositionRepository(_db);
+			Details = new DetailsRepository(_db);
 		}
-		public IEmployeesRepository Employees { get; private set; }
-
+		public IEmployeesRepository Employee { get; private set; }
+		public IPositionRepository Position { get; private set; }
+		public IDetailsRepository Details { get; private set; }
 		public void Save()
 		{
 			_db.SaveChanges();

@@ -1,0 +1,28 @@
+﻿@model Position
+
+<form method="post" style="background-image:radial-gradient(lightpink, grey)">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary text-dark text-center">Edit Position of Employee</h2>
+			<hr />
+		</div>
+		@*<div asp-validation-summary="All"></div>*@
+		<div class="mb-3">
+			<label asp-for="Designation"></label>
+			<input asp-for="Designation" class="form-control" />
+			<span asp-validation-for="Designation" class="text-danger"></span>
+		</div>
+		<div>
+			<button type="submit" class="btn btn-outline-dark" style="width:150px">Edit</button>
+			<a asp-controller="Position" asp-action="Index" class="btn btn-secondary" style="width:150px">
+				Back to List
+			</a>
+		</div>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

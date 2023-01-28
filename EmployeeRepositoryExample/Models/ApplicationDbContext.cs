@@ -11,5 +11,6 @@ namespace EmployeeRepositoryExample.Models
 
         public DbSet<Employee> Employees { get; set;}
         public DbSet<Position> positions { get; set;}
+        public DbSet<Details> company_details { get; set;}
     }
 }

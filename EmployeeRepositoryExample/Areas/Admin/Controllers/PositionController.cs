@@ -2,20 +2,20 @@
 using EmployeeRepositoryExample.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EmployeeRepositoryExample.Controllers
+namespace EmployeeRepositoryExample.Areas.Admin.Controllers
 {
-    public class EmployeeController : Controller
+    public class PositionController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public EmployeeController(IUnitOfWork unitOfWork)
+        public PositionController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Employee> employeeList = _unitOfWork.Employees.GetAll();
-            return View(employeeList);
+            IEnumerable<Position> positionList = _unitOfWork.Position.GetAll();
+            return View(positionList);
         }
 
         // Get Action method
@@ -25,9 +25,9 @@ namespace EmployeeRepositoryExample.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Employee emp)
+        public IActionResult Create(Position pos)
         {
-            _unitOfWork.Employees.Add(emp);
+            _unitOfWork.Position.Add(pos);
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
@@ -39,8 +39,8 @@ namespace EmployeeRepositoryExample.Controllers
             {
                 return NotFound();
             }
-            var employeeGet = _unitOfWork.Employees.GetFirstOrDefault(x=>x.Id==id);
-            if(employeeGet == null)
+            var employeeGet = _unitOfWork.Position.GetFirstOrDefault(x => x.Id == id);
+            if (employeeGet == null)
             {
                 return NotFound();
             }
@@ -50,10 +50,10 @@ namespace EmployeeRepositoryExample.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //POSt for Edit
-        public IActionResult Edit(Employee emp)
+        public IActionResult Edit(Position pos)
         {
             //var employeeEdit = _db.Employees.Where(x=>x.)
-            _unitOfWork.Employees.Update(emp);
+            _unitOfWork.Position.Update(pos);
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
@@ -64,7 +64,7 @@ namespace EmployeeRepositoryExample.Controllers
             {
                 return NotFound();
             }
-            var employeeGet = _unitOfWork.Employees.GetFirstOrDefault(x => x.Id == id);
+            var employeeGet = _unitOfWork.Position.GetFirstOrDefault(x => x.Id == id);
             if (employeeGet == null)
             {
                 return NotFound();
@@ -76,12 +76,12 @@ namespace EmployeeRepositoryExample.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirm(int? id)
         {
-            var obj = _unitOfWork.Employees.GetFirstOrDefault(x=>x.Id==id);
+            var obj = _unitOfWork.Position.GetFirstOrDefault(x => x.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _unitOfWork.Employees.Remove(obj);
+            _unitOfWork.Position.Remove(obj);
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }

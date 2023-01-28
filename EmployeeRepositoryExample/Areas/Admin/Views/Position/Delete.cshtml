@@ -1,0 +1,32 @@
+﻿@model Position
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<form method="post" asp-action="Delete" style="background-image:linear-gradient(pink,yellow)">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary text-center">Delete Position</h2>
+			<hr />
+		</div>
+		@*<div asp-validation-summary="All"></div>*@
+		<div class="mb-3">
+			<label asp-for="Designation"></label>
+			<input asp-for="Designation" disabled class="form-control" />
+			<span asp-validation-for="Designation" class="text-danger"></span>
+		</div>
+		
+		<button type="submit" class="btn btn-outline-dark" style="width:150px">Delete</button>
+		<a asp-controller="Position" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Back to List
+		</a>
+	</div>
+</form>
+
+@section Scripts{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
+
+

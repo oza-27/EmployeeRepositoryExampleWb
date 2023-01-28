@@ -2,7 +2,9 @@
 {
 	public interface IUnitOfWork
 	{
-		IEmployeesRepository Employees { get; }
+		IEmployeesRepository Employee { get; }
+		IPositionRepository Position { get; }
+		IDetailsRepository Details { get; }
 		void Save();
 	}
 }
