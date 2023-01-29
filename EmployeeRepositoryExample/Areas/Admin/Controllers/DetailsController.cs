@@ -52,15 +52,19 @@ namespace EmployeeRepositoryExample.Areas.Admin.Controllers
             return View(detailsVM);
         }
 
-        [HttpPost]
+        [HttpPost,ActionName("Upsert")]
         [ValidateAntiForgeryToken]
         //POSt for Edit
         public IActionResult Upsert(Details deta)
         {
-            //var employeeEdit = _db.Employees.Where(x=>x.)
-            _unitOfWork.Details.Update(deta);
-            _unitOfWork.Save();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                //var employeeEdit = _db.Employees.Where(x=>x.)
+                _unitOfWork.Details.Add(deta);
+                _unitOfWork.Save();
+				return RedirectToAction("Index");
+			}
+            return View(deta);
         }
 
         public IActionResult Delete(int? id)

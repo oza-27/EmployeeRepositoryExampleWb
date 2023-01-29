@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeRepositoryExample.Models
@@ -10,10 +11,11 @@ namespace EmployeeRepositoryExample.Models
 		
 		[Required]
 		[Display(Name ="Company Name")]
+		[ValidateNever]
 		public string Name { get; set; }
-
-		[Required]
-		[Display(Name ="Company Address")]
+		
+		
+		[ValidateNever]
 		public string Address { get; set; }
 		
 		[Required]
@@ -23,11 +25,13 @@ namespace EmployeeRepositoryExample.Models
 		
 		public int EmployeeId { get; set; }
 		[ForeignKey("EmployeeId")]
+		[ValidateNever]
 		public Employee Employee { get; set; }
 		[Required]
 		
 		public int PositionId { get; set; }
 		[ForeignKey("PositionId")]
+		[ValidateNever]
 		public Position Position { get; set; }
 	}
 }

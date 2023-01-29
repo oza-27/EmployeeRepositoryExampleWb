@@ -5,20 +5,44 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeRepositoryExample.Migrations
 {
-    public partial class addDetailsToDb : Migration
+    public partial class addDetailsEmployeesToDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Designation",
-                table: "positions",
-                type: "varchar(50)",
-                maxLength: 50,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+            migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Technology = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "positions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Designation = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_positions", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
                 name: "company_details",
@@ -68,16 +92,11 @@ namespace EmployeeRepositoryExample.Migrations
             migrationBuilder.DropTable(
                 name: "company_details");
 
-            migrationBuilder.AlterColumn<string>(
-                name: "Designation",
-                table: "positions",
-                type: "longtext",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "varchar(50)",
-                oldMaxLength: 50)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+            migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "positions");
         }
     }
 }

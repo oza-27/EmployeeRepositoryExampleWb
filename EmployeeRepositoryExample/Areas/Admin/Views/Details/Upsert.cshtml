@@ -1,6 +1,6 @@
 ﻿@model EmployeeRepositoryExample.Models.ViewModels.DetailsVM
 
-<form method="post" style="background-image:radial-gradient(#c973ff, #aebaf8)">
+<form method="post" style="background-image:radial-gradient(#c973ff, #aebaf8)" asp-action="Upsert">
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
 			<h2 class="text-primary text-dark text-center"> Edit Detials of the Company </h2>
@@ -25,14 +25,14 @@
 			<span asp-validation-for="details.Range" class="text-danger"></span>
 		</div>
 
-		<div class="mb-3">
+		<div class="mb-3 col-6">
 			<label asp-for="details.EmployeeId"> <b> Names of Employees </b> </label>
 			<select asp-for="details.EmployeeId" asp-items="@Model.EmployeeList" class="form-select">
 				<option disabled selected>-----Select Employee-----</option>
 			</select>
 		</div>
 
-		<div class="mb-3">
+		<div class="mb-3 col-6">
 			<label asp-for="details.PositionId"> <b> Names of Employees </b> </label>
 			<select asp-for="details.PositionId" asp-items="Model.PositionList" class="form-select">
 				<option disabled selected>-----Select Designation-----</option>
